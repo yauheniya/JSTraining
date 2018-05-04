@@ -1,10 +1,10 @@
 //Algorithms for tasks 1 and 2 implement as functions with one argument. Run both function with the same array in one script.js file.
 
-var a1 = [0, -1, -1, 2, -5, -7, 4, 8, 3];
-var a2 = [ 1, 2, 1, 2, 3.14, 4, 2, 1, 2, 2, 8, 8, 1, 4, 1];
+let a1 = [0, -1, -1, 2, -5, -7, 4, 8, 3];
+let a2 = [ 1, 2, 1, 2, 3.14, 4, 2, 1, 2, 2, 8, 8, 1, 4, 1];
 
 function arrayDivision (arr) {
-    var b=[], c=[];
+    let b=[], c=[];
     arr.forEach((el, i, a)=>{
         if (el>=0) b.push(el);
         else c.push(el);
@@ -15,7 +15,7 @@ function arrayDivision (arr) {
 }
 
 function arrayCount (arr) {
-    var resultArr = [];
+    let resultArr = [];
 
     arr.forEach((el, i, a)=>{
         if (resultArr.length === 0){
