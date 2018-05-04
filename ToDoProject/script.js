@@ -3,26 +3,35 @@ let todoItems = [];
 let newItem = {
     text : "text text",
     completed : false,
-    id : 5
+    id : 8
 };
 let newItem1 = {
     text : "text text",
     completed : true
 };
 
-/*var itemsHistory = [];
-
-var initItemsHistory = function() {
+let initItemsHistory = function() {
     $.getJSON( "todos.json", function(data) {
-        console.log(data);
-        itemsHistory = data.data;
+        data.data.forEach((item, i, arr)=>{
+            todoItems.push(item);
+        });
     });
 };
 
-initItemsHistory();*/
+initItemsHistory();
 
+/*washingHistory.push({
+    date: (new Date()).toISOString(),
+    weight: curClothesWeight,
+    type: type
+});
 
-addTodoItem(newItem1); // New item added successfully with id = 1
+console.log(washingHistory);*/
+
+console.log(`\nAll items`);
+console.log(todoItems);
+
+/*addTodoItem(newItem1); // New item added successfully with id = 1
 addTodoItem(newItem); // New item added successfully
 addTodoItem(newItem); // ID is not unique!
 addTodoItem(newItem1); // New item added successfully with id = 6
@@ -47,13 +56,13 @@ console.log(`Complete - ${completeTodoItem()}`); //Complete false
 
 console.log(`\nAll items`);
 console.log(todoItems);
-
 console.log(`Delete - ${deleteTodoItem(5)}`); //Delete true
 console.log(`Delete - ${deleteTodoItem(555)}`); //Delete false
 console.log(`Delete - ${deleteTodoItem()}`); //Delete false
 
 console.log(`\nAll items`);
-console.log(todoItems);
+console.log(todoItems);*/
+
 
 
 
