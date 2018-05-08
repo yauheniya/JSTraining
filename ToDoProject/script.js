@@ -36,13 +36,14 @@ addTodoItemDom( {text:"", completed:true, id:3} ); // Text is empty
 addTodoItemDom( {text:"text", id:2} ); // Completed status is empty
 addTodoItemDom( {text:"text", completed:"", id:3} ); // Completed status is empty
 
-editTodoItemDom(5, "newText"); //Edit true
 editTodoItemDom("newText"); //Edit false
 editTodoItemDom(5, ""); //Edit false
 editTodoItemDom(5); //Edit false
 editTodoItemDom(5555, "newText"); //Edit false
+editTodoItemDom(5, "newText"); //Edit true
 
 viewTodoListDom("completed");
+viewTodoListDom("123");
 viewTodoListDom("not_completed");
 viewTodoListDom("all");
 

@@ -30,7 +30,7 @@ function deleteTodoItemDom(todoItemId) {
         setMessageDom("Item deleted successfully");
     }
     else {
-        setMessageDom("Deleted successfully");
+        setMessageDom("Deleting failed");
         return false;
     }
 };
@@ -41,15 +41,22 @@ function setMessageDom(message) {
 };
 
 function viewTodoListDom(itemsType) {
-    setMessageDom(`View ${itemsType} items`);
     let lisList = document.getElementById("todo-items");
     lisList.innerHTML = "";
 
-    let lis = "";
     let filteredItems = viewTodoList(itemsType);
-    filteredItems.forEach((todoItem, i, items)=>{
-        lis += `<li>id: ${todoItem.id} <ul><li type = "circle">text: ${todoItem.text}</li> <li type = "circle">completed: ${todoItem.completed}</li></ul></li>`
-    });
+    if(filteredItems){
+        let lis = "";
+        filteredItems.forEach((todoItem, i, items)=>{
+            lis += `<li>id: ${todoItem.id} <ul><li type = "circle">text: ${todoItem.text}</li> <li type = "circle">completed: ${todoItem.completed}</li></ul></li>`
+        });
 
-    lisList.innerHTML = lis;
+        lisList.innerHTML = lis;
+        setMessageDom(`View ${itemsType} items`);
+    }
+    else {
+        setMessageDom("View failed");
+        return false;
+    }
+
 };
