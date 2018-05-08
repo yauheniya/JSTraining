@@ -1,5 +1,7 @@
 let todoItems = [];
 
+let message = "";
+
 let newItem = {
     text : "text text",
     completed : false,
@@ -11,57 +13,50 @@ let newItem1 = {
 };
 
 let initItemsHistory = function() {
-    $.getJSON( "todos.json", function(data) {
-        data.data.forEach((item, i, arr)=>{
-            todoItems.push(item);
-        });
+    $.ajax({
+        dataType: "json",
+        url: 'todos.json',
+        async: false,
+        success: function(data) {
+            data.data.forEach((item, i, arr)=>{
+                todoItems.push(item);
+            });
+        }
     });
 };
 
 initItemsHistory();
 
-/*washingHistory.push({
-    date: (new Date()).toISOString(),
-    weight: curClothesWeight,
-    type: type
-});
+addTodoItemDom(newItem1); // New item added successfully with id = 1
+addTodoItemDom(newItem); // New item added successfully
+addTodoItemDom(newItem); // ID is not unique!
+addTodoItemDom(newItem1); // New item added successfully with id = 6
+addTodoItemDom( {completed:true, id:2} ); // Text is empty
+addTodoItemDom( {text:"", completed:true, id:3} ); // Text is empty
+addTodoItemDom( {text:"text", id:2} ); // Completed status is empty
+addTodoItemDom( {text:"text", completed:"", id:3} ); // Completed status is empty
 
-console.log(washingHistory);*/
+editTodoItemDom(5, "newText"); //Edit true
+editTodoItemDom("newText"); //Edit false
+editTodoItemDom(5, ""); //Edit false
+editTodoItemDom(5); //Edit false
+editTodoItemDom(5555, "newText"); //Edit false
 
-console.log(`\nAll items`);
-console.log(todoItems);
+viewTodoListDom("completed");
+viewTodoListDom("not_completed");
+viewTodoListDom("all");
 
-/*addTodoItem(newItem1); // New item added successfully with id = 1
-addTodoItem(newItem); // New item added successfully
-addTodoItem(newItem); // ID is not unique!
-addTodoItem(newItem1); // New item added successfully with id = 6
-addTodoItem( {completed:true, id:2} ); // Text is empty
-addTodoItem( {text:"", completed:true, id:3} ); // Text is empty
-addTodoItem( {text:"text", id:2} ); // Completed status is empty
-addTodoItem( {text:"text", completed:"", id:3} ); // Completed status is empty
+/*
+completeTodoItemDom(5); //Complete true
+completeTodoItemDom(1); //Complete false, Item already completed
+completeTodoItemDom(555); //Complete false
+completeTodoItemDom(); //Complete false
+*/
 
-console.log(`Edit - ${editTodoItem(5, "newText")}`); //Edit true
-console.log(`Edit - ${editTodoItem("newText")}`); //Edit false
-console.log(`Edit - ${editTodoItem(5, "")}`); //Edit false
-console.log(`Edit - ${editTodoItem(5)}`); //Edit false
-console.log(`Edit - ${editTodoItem(5555, "newText")}`); //Edit false
+deleteTodoItemDom(5); //Delete true
+deleteTodoItemDom(555); //Delete false
+deleteTodoItemDom(); //Delete false
 
-console.log("Completed Items:");
-console.log(viewTodoList("completed"));
-
-console.log(`Complete - ${completeTodoItem(5)}`); //Complete true
-console.log(`Complete - ${completeTodoItem(1)}`); //Complete false, Item already completed
-console.log(`Complete - ${completeTodoItem(555)}`); //Complete false
-console.log(`Complete - ${completeTodoItem()}`); //Complete false
-
-console.log(`\nAll items`);
-console.log(todoItems);
-console.log(`Delete - ${deleteTodoItem(5)}`); //Delete true
-console.log(`Delete - ${deleteTodoItem(555)}`); //Delete false
-console.log(`Delete - ${deleteTodoItem()}`); //Delete false
-
-console.log(`\nAll items`);
-console.log(todoItems);*/
 
 
 

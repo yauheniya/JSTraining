@@ -6,17 +6,17 @@ function addTodoItem(todoItem) {
     let ids = [];
 
     if ((itemToAdd.text === "") || (itemToAdd.text === undefined) || (itemToAdd.text === null)) {
-        console.log("Text is empty");
+        message = "Text is empty";
         return false;
     };
 
     if ((itemToAdd.completed === undefined) || (itemToAdd.completed === "")) {
-        console.log("Completed status is empty");
+        message = "Completed status is empty";
         return false;
     };
 
     if ((typeof itemToAdd.id !== "number") && (typeof itemToAdd.id !== "undefined")) {
-        console.log("ID is not a number");
+        message = "ID is not a number";
         return false;
     };
 
@@ -36,10 +36,10 @@ function addTodoItem(todoItem) {
             else itemToAdd.id = Math.max.apply(null, ids)+1;
         }
         todoItems.push(itemToAdd);
-        console.log("New item added successfully");
+        message = "New item added successfully";
         return true;
     } else {
-        console.log("ID is not unique!");
+        message = "ID is not unique!";
         return false;
     }
 
@@ -58,28 +58,30 @@ function viewTodoList(itemsType) {
 
     if (itemsType == 'all') {
         filteredItems = todoItems;
-    }
+    };
 
     if (itemsType === 'completed' || itemsType === 'not_completed') {
         filteredItems = todoItems.filter(function (item) {
             return itemsType === 'completed' ? item.completed === true : item.completed === false
         })
-    }
-
+    };
     return filteredItems;
 };
 
 function editTodoItem(todoItemId, newText) {
-    let result = false;
     if (newText !== "" && newText !== undefined && todoItemId !== undefined) {
         todoItems.forEach((item, i, items)=>{
             if (item.id === todoItemId) {
                 item.text = newText;
-                result = true;
+                message = "Item edited successfully";
+                return true;
             }
         });
     }
-    return result;
+    else{
+        message = "Editing failed";
+        return false;
+    };
 };
 
 function deleteTodoItem(todoItemId) {
@@ -93,9 +95,11 @@ function deleteTodoItem(todoItemId) {
             }
             return notDeletedItem;
         });
+        return true;
     }
-
-    return result;
+    else{
+        return false;
+    };
 };
 
 function completeTodoItem(todoItemId) {
