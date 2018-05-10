@@ -1,38 +1,19 @@
 "use strict";
 
 function addTodoItemDom(todoItem) {
-    if (addTodoItem(todoItem)){
-        viewTodoListDom("all");
-        setMessageDom(message);
-        return true;
-    }
-    else {
-        setMessageDom(message);
-        return false;
-    }
+    result(addTodoItem(todoItem), showOk, showCancel);
 };
 
 function editTodoItemDom(todoItemId, newText) {
-    if(editTodoItem(todoItemId, newText)){
-        viewTodoListDom("all");
-        setMessageDom(message);
-        return true;
-    }
-    else {
-        setMessageDom(message);
-        return false;
-    }
+    result(editTodoItem(todoItemId, newText), showOk, showCancel);
 };
 
 function deleteTodoItemDom(todoItemId) {
-    if(deleteTodoItem(todoItemId)){
-        viewTodoListDom("all");
-        setMessageDom("Item deleted successfully");
-    }
-    else {
-        setMessageDom("Deleting failed");
-        return false;
-    }
+    result(deleteTodoItem(todoItemId), showOk, showCancel);
+};
+
+function completeTodoItemDom(todoItemId) {
+    result(completeTodoItem(todoItemId), showOk, showCancel);
 };
 
 function setMessageDom(message) {
@@ -41,7 +22,10 @@ function setMessageDom(message) {
 };
 
 function viewTodoListDom(itemsType) {
-    let lisList = document.getElementById("todo-items");
+    if (itemsType === "all")
+        document.getElementById("all").checked = true;
+
+    let lisList = document.getElementById("filtered-todo-items");
     lisList.innerHTML = "";
 
     let filteredItems = viewTodoList(itemsType);
@@ -59,4 +43,45 @@ function viewTodoListDom(itemsType) {
         return false;
     }
 
+};
+
+function viewALLTodoListDom() {
+    let lisList = document.getElementById("todo-items");
+    lisList.innerHTML = "";
+
+    let filteredItems = viewTodoList("all");
+    console.log(filteredItems);
+    if(filteredItems){
+        let lis = "";
+        filteredItems.forEach((todoItem, i, items)=>{
+            lis += `<li id="${todoItem.id}">id: ${todoItem.id} 
+                    <a href="/" id="deleteList" style="margin-left: 6px">Delete</a>
+                    <a href="/" id="completeList" style="margin-left: 6px">Complete</a>
+                    <ul><li type = "circle">text: ${todoItem.text}</li> <li type = "circle">completed: ${todoItem.completed}</li></ul></li>`
+        });
+
+        lisList.innerHTML = lis;
+    }
+    else {
+        setMessageDom("View failed");
+        return false;
+    };
+};
+
+function result(isConfirm, yes, no) {
+    if (isConfirm) {
+        yes();
+    }
+    else {
+        no();
+    };
+};
+
+function showOk() {
+    viewALLTodoListDom();
+    viewTodoListDom("all");
+    setMessageDom(message);
+};
+function showCancel() {
+    setMessageDom(message);
 };

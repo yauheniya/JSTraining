@@ -60,7 +60,7 @@ function viewTodoList(itemsType) {
         filteredItems = todoItems;
     };
 
-    if (itemsType === 'completed' || itemsType === 'not_completed') {
+    if (itemsType === 'completed' || itemsType === 'not-completed') {
         filteredItems = todoItems.filter(function (item) {
             return itemsType === 'completed' ? item.completed === true : item.completed === false
         })
@@ -69,53 +69,68 @@ function viewTodoList(itemsType) {
 };
 
 function editTodoItem(todoItemId, newText) {
+    let flag = false;
     if (newText !== "" && newText !== undefined && todoItemId !== undefined) {
         todoItems.forEach((item, i, items)=>{
             if (item.id === todoItemId) {
+                flag = true;
                 item.text = newText;
                 message = "Item edited successfully";
-                return true;
             }
         });
+        if (!flag)
+            message = "Editing failed";
+        return true;
     }
     else{
-        message = "Editing failed";
+        message = "ID should be specified";
         return false;
     };
 };
 
 function deleteTodoItem(todoItemId) {
     let result = false;
+    let flag = false;
     if (todoItemId !== undefined) {
-        todoItems = todoItems.filter(function(item) {
-            let notDeletedItem = true;
-            if (item.id === todoItemId){
-                notDeletedItem = false;
+        todoItems.forEach((item, i, todoItems)=>{
+            if(item.id == todoItemId) {
+                flag = true;
+                todoItems.splice(i, 1);
+                message = "Item deleted successfully";
                 result = true;
             }
-            return notDeletedItem;
         });
-        return true;
+        if (!flag)
+            message = "Deleting failed";
+        return result;
     }
     else{
+        message = "ID should be specified";
         return false;
     };
 };
 
 function completeTodoItem(todoItemId) {
     let result = false;
+    let flag = false;
     if (todoItemId !== undefined) {
         todoItems.forEach((item, i, items)=>{
-            if (item.id === todoItemId) {
+            if (item.id == todoItemId) {
+                flag = true;
                 if (item.completed === true)
-                    console.log("Item already completed");
+                    message = "Item already completed";
                 else {
                     item.completed = true;
                     result = true;
+                    message = "Item completed successfully";
                 }
             }
         });
+        if (!flag)
+            message = "Completing failed";
+    }
+    else {
+        message = "ID should be specified";
     }
     return result;
 };
-

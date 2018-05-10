@@ -2,7 +2,7 @@ let todoItems = [];
 
 let message = "";
 
-let newItem = {
+/*let newItem = {
     text : "text text",
     completed : false,
     id : 8
@@ -10,7 +10,7 @@ let newItem = {
 let newItem1 = {
     text : "text text",
     completed : true
-};
+};*/
 
 let initItemsHistory = function() {
     $.ajax({
@@ -26,8 +26,10 @@ let initItemsHistory = function() {
 };
 
 initItemsHistory();
+viewALLTodoListDom();
+viewTodoListDom("all");
 
-addTodoItemDom(newItem1); // New item added successfully with id = 1
+/*addTodoItemDom(newItem1); // New item added successfully with id = 1
 addTodoItemDom(newItem); // New item added successfully
 addTodoItemDom(newItem); // ID is not unique!
 addTodoItemDom(newItem1); // New item added successfully with id = 6
@@ -45,7 +47,7 @@ editTodoItemDom(5, "newText"); //Edit true
 viewTodoListDom("completed");
 viewTodoListDom("123");
 viewTodoListDom("not_completed");
-viewTodoListDom("all");
+viewTodoListDom("all");*/
 
 /*
 completeTodoItemDom(5); //Complete true
@@ -54,9 +56,9 @@ completeTodoItemDom(555); //Complete false
 completeTodoItemDom(); //Complete false
 */
 
-deleteTodoItemDom(5); //Delete true
+/*deleteTodoItemDom(5); //Delete true
 deleteTodoItemDom(555); //Delete false
-deleteTodoItemDom(); //Delete false
+deleteTodoItemDom(); //Delete false*/
 
 
 

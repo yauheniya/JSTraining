@@ -8,11 +8,51 @@
 	<meta name="author" content="Yauhenia Pastukhova">
 </head>
 <body>
-    <div id = "resultMessage" style="color: crimson; font-size: 22px;"></div>
-    <div style="float: left; width: 33%; box-sizing: border-box;">
-        <h3>Todo Items</h3>
+    <div id = "resultMessage" style="color: crimson; font-size: 26px; margin-bottom: 16px" align="center">Result</div>
+    <div id="result-message" align="center">
+    </div>
+    <div style="float: left; width: 25%; box-sizing: border-box;">
+        <h3>ALL Todo Items</h3>
         <ol id="todo-items" type="1">
         </ol>
+    </div>
+    <div style="float: left; width: 25%; box-sizing: border-box;">
+        <!-- <div align="left">
+            <button id = "viewButton" style="background: blueviolet; color: aliceblue; margin:auto; font-size: 18px;">View todoItem</button>
+        </div> -->
+        <h3>Filtered Todo Items</h3>
+        <p>Select filter option:</p>
+        <div id="filter-options">
+            <input type="radio" id="all" name="filter" value="All" checked>
+            <label for="all">All</label>
+            <input type="radio" id="completed" name="filter" value="Completed">
+            <label for="completed">Completed</label>
+            <input type="radio" id="not-completed" name="filter" value="Not completed">
+            <label for="not-completed">Not completed</label>
+        </div>
+        <ol id="filtered-todo-items" type="1">
+        </ol>
+    </div>
+    <div style="float: left; width: 50%; box-sizing: border-box;">
+        <h3>Add / Edit / Delete Todo Item</h3>
+        <div align="left">
+            <button id = "addButton" style="background: blueviolet; color: aliceblue; margin:auto; font-size: 18px;">Add new todoItem</button>
+            <button id = "editButton" style="background: blueviolet; color: aliceblue; margin:auto; font-size: 18px;">Edit todoItem</button>
+            <button id = "completeButton" style="background: blueviolet; color: aliceblue; margin:auto; font-size: 18px;">Complete todoItem</button>
+            <button id = "deleteButton" style="background: blueviolet; color: aliceblue; margin:auto; font-size: 18px;">Delete todoItem</button>
+        </div>
+        <form>
+            <div style="margin: 10px;">Enter text:
+                <input type="text" id="inputText" value="Default">
+            </div>
+            <div style="margin: 10px;">Enter id:
+                <input type="text" id="inputID" value=123>
+            </div>
+            <div style="margin: 10px;">Select completed status:
+                <input type="checkbox" id="checkboxCompleted">
+                <label for="checkboxCompleted">Completed</label>
+            </div>
+        </form>
     </div>
 </body>
 
@@ -21,5 +61,6 @@
 <script src="todos.json"></script>
 <script src="functions.js"></script>
 <script src="functionsDOM.js"></script>
+<script src="listeners.js"></script>
 <script src="script.js"></script>
 </html>
